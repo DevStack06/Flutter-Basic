@@ -2,15 +2,54 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class Gmail extends StatelessWidget {
+class Gmail extends StatefulWidget {
   const Gmail({Key key}) : super(key: key);
 
+  @override
+  _GmailState createState() => _GmailState();
+}
+
+class _GmailState extends State<Gmail> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.black,
+      drawer: Drawer(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            ListTile(
+              onTap: () {
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text("Hello Baby")));
+              },
+              leading: Icon(Icons.login),
+              title: Text("Login"),
+              trailing: IconButton(
+                icon: Icon(Icons.headset),
+                onPressed: () {},
+              ),
+              // trailing: ,
+            ),
+            ListTile(
+              leading: Icon(Icons.login),
+              title: Text("Login"),
+              // trailing: ,
+            ),
+            ListTile(
+              leading: Icon(Icons.login),
+              title: Text("Login"),
+              // trailing: ,
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.black,
+        elevation: 0,
         // leading: Icon(Icons.arrow_forward),
         actions: [
           IconButton(icon: Icon(Icons.archive), onPressed: () {}),
@@ -50,43 +89,76 @@ class Gmail extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 600,
-              color: Colors.pink,
-            ),
-            Container(
-              height: 600,
-              color: Colors.yellow,
-            ),
-            Container(
-              height: 600,
-              color: Colors.red,
-            ),
             SizedBox(
-              height: 20,
+              height: 10,
+            ),
+            Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 60,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Wrap(
+                    // runAlignment: WrapAlignment.start,
+                    children: [
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        child: Text(
+                          "Limited-edition V-day Mini Set for you 💄✨",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        color: Colors.grey[300],
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        child: Text(
+                          "Inbox",
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+                        content: new Text(
+                      "hello",
+                      style: TextStyle(color: Colors.black),
+                    )));
+                  },
+                  child: Container(
+                    width: 60,
+                    child: Icon(Icons.star_border_outlined),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            button(Icons.reply, "Reply"),
-            button(Icons.reply_all, "Reply All"),
-            button(Icons.forward, "Forward"),
-          ],
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   color: Colors.black,
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       button(Icons.reply, "Reply", context),
+      //       button(Icons.reply_all, "Reply All", context),
+      //       button(Icons.forward, "Forward", context),
+      //     ],
+      //   ),
+      // ),
     );
   }
 
-  Widget button(IconData icon, String text) {
+  Widget button(IconData icon, String text, BuildContext context) {
     return InkWell(
-      onTap: () {
-        print("hello deepa babe");
-      },
+      onTap: () {},
       child: Container(
         width: 130,
         height: 60,
